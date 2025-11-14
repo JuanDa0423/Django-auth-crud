@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 #funcion para la pagina de inicio
 def Home(request):
-    return render(request, 'Home.html')
+    return render(request, 'home.html')
 
 #funcion para registrar usuario
 def Signup(request):
