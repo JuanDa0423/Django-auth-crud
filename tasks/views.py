@@ -131,5 +131,6 @@ def signin(request):
                 'error' : 'Username or Password is incorrect'
         })
         else:
+            login(request, user)
             return redirect('tasks')
             
