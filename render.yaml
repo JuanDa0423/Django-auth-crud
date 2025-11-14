@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: django-auth-crud
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn djangocrud.wsgi:application"
+    preDeployCommand: "python manage.py collectstatic --noinput && python manage.py migrate"
