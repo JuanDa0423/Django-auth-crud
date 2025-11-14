@@ -1,6 +1,3 @@
-print(">>> DEBUG EN SETTINGS:", DEBUG)
-print(">>> MODULO SETTINGS CARGADO:", __name__)
-
 """
 Django settings for djangocrud project.
 
@@ -28,9 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
+print(">>> DEBUG EN SETTINGS:", DEBUG)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
