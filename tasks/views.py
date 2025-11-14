@@ -114,22 +114,26 @@ def delete_task(request, task_id):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('signin')
+    return redirect('home')
 
 #funcion para iniciar sesion
 def signin(request):
     if request.method == 'GET':
         return render(request, 'signin.html', {
-            'form': AuthenticationForm
+            'form': AuthenticationForm()
         })
     else:
         user = authenticate(
-            request, username=request.POST['username'], password=request.POST['password1'])
+            request,
+            username=request.POST.get('username'),
+            password=request.POST.get('password')
+        )
+
         if user is None:
             return render(request, 'signin.html', {
-                'form': AuthenticationForm,
-                'error' : 'Username or Password is incorrect'
-        })
-        else:
-            return redirect('tasks')
-            
+                'form': AuthenticationForm(),
+                'error': 'Username or Password is incorrect'
+            })
+
+        login(request, user)
+        return redirect('tasks')
