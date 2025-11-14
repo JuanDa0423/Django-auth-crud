@@ -114,7 +114,7 @@ def delete_task(request, task_id):
 @login_required
 def signout(request):
     logout(request)
-    return redirect('home')
+    return redirect('signin')
 
 #funcion para iniciar sesion
 def signin(request):
@@ -124,7 +124,7 @@ def signin(request):
         })
     else:
         user = authenticate(
-            request, username=request.POST['username'], password=request.POST['password'])
+            request, username=request.POST['username'], password=request.POST['password1'])
         if user is None:
             return render(request, 'signin.html', {
                 'form': AuthenticationForm,
